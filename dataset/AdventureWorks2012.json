@@ -14,8 +14,7 @@
 		"type": "SqlServerTable",
 		"schema": [],
 		"typeProperties": {
-			"schema": "table",
-			"table": "@{item().Name}"
+			"schema": ""
 		}
 	}
 }

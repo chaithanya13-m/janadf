@@ -17,12 +17,12 @@
 				"typeProperties": {
 					"source": {
 						"type": "SqlServerSource",
-						"sqlReaderQuery": "Select DepartmentName from [dbo].[DimEmployee] as Dname",
+						"sqlReaderQuery": "SELECT [DepartmentID] from [HumanResources].[Department]",
 						"queryTimeout": "02:00:00",
 						"partitionOption": "None"
 					},
 					"dataset": {
-						"referenceName": "AdventureWorksDW2012Source",
+						"referenceName": "AdventureWorks2012",
 						"type": "DatasetReference"
 					},
 					"firstRowOnly": false
@@ -61,7 +61,7 @@
 							"typeProperties": {
 								"source": {
 									"type": "SqlServerSource",
-									"sqlReaderQuery": "SELECT [EmployeeKey]\n      ,[SalesTerritoryKey]\n      ,[FirstName]\n      ,[LastName]\n      ,[LoginID]\n      ,[EmailAddress]\n      ,[Gender]\n      ,[DepartmentName] FROM [dbo].[DimEmployee] where DepartmentName = '@{item().Dname}'",
+									"sqlReaderQuery": "select e.BusinessEntityID, e.JobTitle, e.BirthDate, e.HireDate, e.MaritalStatus, d.departmentid from HumanResources.Employee as e inner join HumanResources.EmployeeDepartmentHistory as d on e.BusinessEntityID = d.BusinessEntityID where DepartmentID=@{item().DepartmentID}",
 									"queryTimeout": "02:00:00",
 									"partitionOption": "None"
 								},
@@ -81,14 +81,20 @@
 							},
 							"inputs": [
 								{
-									"referenceName": "AdventureWorks2012",
+									"referenceName": "AssignmentSource",
 									"type": "DatasetReference"
 								}
 							],
 							"outputs": [
 								{
 									"referenceName": "AzureSqlTable1",
-									"type": "DatasetReference"
+									"type": "DatasetReference",
+									"parameters": {
+										"filename": {
+											"value": "@item.Name",
+											"type": "Expression"
+										}
+									}
 								}
 							]
 						}
