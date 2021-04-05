@@ -1,0 +1,42 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "chaithuADF"
+		},
+		"AzureBlobStorageDest_connectionString": {
+			"value": ""
+		},
+		"AzureSqlDatabaseLS_connectionString": {
+			"value": ""
+		},
+		"AzureSqlDatabaseSource_connectionString": {
+			"value": ""
+		},
+		"SqlServerAdventureWorks_connectionString": {
+			"value": ""
+		},
+		"SqlServerAdventureWorks_password": {
+			"value": ""
+		},
+		"SqlServerLS_connectionString": {
+			"value": ""
+		},
+		"SqlServerLS_password": {
+			"value": ""
+		},
+		"SqlServerAdventureWorks_properties_typeProperties_userName": {
+			"value": "DESKTOP-IGTQPFG\\Happy Users"
+		},
+		"SqlServerLS_properties_typeProperties_userName": {
+			"value": "DESKTOP-IGTQPFG\\Happy Users"
+		},
+		"containerUri": {
+			"value": ""
+		},
+		"containerSasToken": {
+			"value": ""
+		}
+	}
+}
