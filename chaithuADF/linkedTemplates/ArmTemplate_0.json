@@ -11,6 +11,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorageDest'"
 		},
+		"AzureSqlDatabase1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureSqlDatabase1'"
+		},
 		"AzureSqlDatabaseLS_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'AzureSqlDatabaseLS'"
@@ -57,6 +61,19 @@
 				"type": "AzureBlobStorage",
 				"typeProperties": {
 					"connectionString": "[parameters('AzureBlobStorageDest_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureSqlDatabase1')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureSqlDatabase",
+				"typeProperties": {
+					"connectionString": "[parameters('AzureSqlDatabase1_connectionString')]"
 				}
 			},
 			"dependsOn": []
@@ -124,6 +141,32 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/AzureSqlDatabaseLS')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureSqlTabledest')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureSqlDatabase1",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"table": {
+						"type": "string"
+					}
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "table"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureSqlDatabase1')]"
 			]
 		},
 		{
@@ -545,11 +588,11 @@
 									],
 									"outputs": [
 										{
-											"referenceName": "AzureSqlTable1",
+											"referenceName": "AzureSqlTabledest",
 											"type": "DatasetReference",
 											"parameters": {
-												"filename": {
-													"value": "@item.Name",
+												"table": {
+													"value": "@item().name",
 													"type": "Expression"
 												}
 											}
@@ -565,7 +608,7 @@
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/AdventureWorks2012')]",
 				"[concat(variables('factoryId'), '/datasets/AssignmentSource')]",
-				"[concat(variables('factoryId'), '/datasets/AzureSqlTable1')]"
+				"[concat(variables('factoryId'), '/datasets/AzureSqlTabledest')]"
 			]
 		}
 	]
