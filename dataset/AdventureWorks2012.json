@@ -1,0 +1,21 @@
+{
+	"name": "AdventureWorks2012",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SqlServerAdventureWorks",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"table": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "table",
+			"table": "@{item().Name}"
+		}
+	}
+}
