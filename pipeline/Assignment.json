@@ -90,7 +90,13 @@
 							"outputs": [
 								{
 									"referenceName": "AzureSqlTabledest",
-									"type": "DatasetReference"
+									"type": "DatasetReference",
+									"parameters": {
+										"table": {
+											"value": "@item().name",
+											"type": "Expression"
+										}
+									}
 								}
 							]
 						}
