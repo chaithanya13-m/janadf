@@ -1,0 +1,6 @@
+{
+	"name": "DemoOnpremIR",
+	"properties": {
+		"type": "SelfHosted"
+	}
+}
