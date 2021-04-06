@@ -1,0 +1,17 @@
+{
+	"name": "Advworks2012SqlServer",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "SqlServer",
+		"typeProperties": {
+			"connectionString": "integrated security=True;data source=DESKTOP-IGTQPFG\\CHAITHANYA;initial catalog=AdventureWorks2012",
+			"userName": "DESKTOP-IGTQPFG\\Happy Users",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiJjYjM1MTUxNS1mNDQwLTQ0ZTYtYTVkMS1mZDUzYzY1OTAzODciLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "SelfHostedintegrationRuntime",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}
