@@ -17,6 +17,12 @@
 		"AzureSqlDatabaseSource_connectionString": {
 			"value": ""
 		},
+		"AzureSqlDemoDBLS_connectionString": {
+			"value": ""
+		},
+		"AzureSqlSampleDBLS_connectionString": {
+			"value": ""
+		},
 		"SqlServerAdventureWorks_connectionString": {
 			"value": ""
 		},
@@ -27,12 +33,6 @@
 			"value": ""
 		},
 		"SqlServerLS_password": {
-			"value": ""
-		},
-		"AzureSqlSampleDBLS_connectionString": {
-			"value": ""
-		},
-		"AzureSqlDemoDBLS_connectionString": {
 			"value": ""
 		},
 		"SqlServerAdventureWorks_properties_typeProperties_userName": {

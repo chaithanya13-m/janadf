@@ -23,6 +23,14 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'AzureSqlDatabaseSource'"
 		},
+		"AzureSqlDemoDBLS_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureSqlDemoDBLS'"
+		},
+		"AzureSqlSampleDBLS_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureSqlSampleDBLS'"
+		},
 		"SqlServerAdventureWorks_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'SqlServerAdventureWorks'"
@@ -38,14 +46,6 @@
 		"SqlServerLS_password": {
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'SqlServerLS'"
-		},
-		"AzureSqlSampleDBLS_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'AzureSqlSampleDBLS'"
-		},
-		"AzureSqlDemoDBLS_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'AzureSqlDemoDBLS'"
 		},
 		"SqlServerAdventureWorks_properties_typeProperties_userName": {
 			"type": "string",
@@ -94,11 +94,11 @@
 					"AzureSqlDatabaseSource_connectionString": {
 						"value": "[parameters('AzureSqlDatabaseSource_connectionString')]"
 					},
-					"AzureSqlSampleDBLS_connectionString": {
-						"value": "[parameters('AzureSqlSampleDBLS_connectionString')]"
-					},
 					"AzureSqlDemoDBLS_connectionString": {
 						"value": "[parameters('AzureSqlDemoDBLS_connectionString')]"
+					},
+					"AzureSqlSampleDBLS_connectionString": {
+						"value": "[parameters('AzureSqlSampleDBLS_connectionString')]"
 					},
 					"SqlServerAdventureWorks_connectionString": {
 						"value": "[parameters('SqlServerAdventureWorks_connectionString')]"
