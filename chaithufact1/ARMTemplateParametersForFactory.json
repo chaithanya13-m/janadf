@@ -1,0 +1,45 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "chaithufact1"
+		},
+		"AzureBlobStorageDest_connectionString": {
+			"value": ""
+		},
+		"AzureSqlDatabase1_connectionString": {
+			"value": ""
+		},
+		"AzureSqlDatabaseLS_connectionString": {
+			"value": ""
+		},
+		"AzureSqlDatabaseSource_connectionString": {
+			"value": ""
+		},
+		"SqlServerAdventureWorks_connectionString": {
+			"value": ""
+		},
+		"SqlServerAdventureWorks_password": {
+			"value": ""
+		},
+		"SqlServerLS_connectionString": {
+			"value": ""
+		},
+		"SqlServerLS_password": {
+			"value": ""
+		},
+		"AzureSqlSampleDBLS_connectionString": {
+			"value": ""
+		},
+		"AzureSqlDemoDBLS_connectionString": {
+			"value": ""
+		},
+		"SqlServerAdventureWorks_properties_typeProperties_userName": {
+			"value": "DESKTOP-IGTQPFG\\Happy Users"
+		},
+		"SqlServerLS_properties_typeProperties_userName": {
+			"value": "DESKTOP-IGTQPFG\\Happy Users"
+		}
+	}
+}
