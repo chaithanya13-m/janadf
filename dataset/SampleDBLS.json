@@ -1,0 +1,12 @@
+{
+	"name": "SampleDBLS",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlSampleDBLS",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": []
+	}
+}
