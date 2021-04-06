@@ -2,15 +2,15 @@
 	"name": "AdventureWorks2012",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "SqlServerAdventureWorks",
+			"referenceName": "Advworks2012SqlServer",
 			"type": "LinkedServiceReference"
 		},
 		"annotations": [],
 		"type": "SqlServerTable",
 		"schema": [],
 		"typeProperties": {
-			"schema": "HumanResources",
-			"table": "Department"
+			"schema": "Person",
+			"table": "Address"
 		}
 	}
 }
