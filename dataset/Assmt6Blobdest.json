@@ -1,0 +1,118 @@
+{
+	"name": "Assmt6Blobdest",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorageAssmt6Dest",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"container": "output"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"SalesOrderID": {
+					"type": "integer"
+				},
+				"RevisionNumber": {
+					"type": "integer"
+				},
+				"OrderDate": {
+					"type": "string"
+				},
+				"DueDate": {
+					"type": "string"
+				},
+				"ShipDate": {
+					"type": "string"
+				},
+				"Status": {
+					"type": "integer"
+				},
+				"OnlineOrderFlag": {
+					"type": "boolean"
+				},
+				"SalesOrderNumber": {
+					"type": "string"
+				},
+				"PurchaseOrderNumber": {
+					"type": "string"
+				},
+				"AccountNumber": {
+					"type": "string"
+				},
+				"CustomerID": {
+					"type": "integer"
+				},
+				"ShipToAddressID": {
+					"type": "integer"
+				},
+				"BillToAddressID": {
+					"type": "integer"
+				},
+				"ShipMethod": {
+					"type": "string"
+				},
+				"SubTotal": {
+					"type": "number"
+				},
+				"TaxAmt": {
+					"type": "number"
+				},
+				"Freight": {
+					"type": "number"
+				},
+				"TotalDue": {
+					"type": "number"
+				},
+				"rowguid": {
+					"type": "string"
+				},
+				"ModifiedDate": {
+					"type": "string"
+				},
+				"NameStyle": {
+					"type": "boolean"
+				},
+				"Title": {
+					"type": "string"
+				},
+				"FirstName": {
+					"type": "string"
+				},
+				"LastName": {
+					"type": "string"
+				},
+				"CompanyName": {
+					"type": "string"
+				},
+				"SalesPerson": {
+					"type": "string"
+				},
+				"EmailAddress": {
+					"type": "string"
+				},
+				"Phone": {
+					"type": "string"
+				},
+				"PasswordHash": {
+					"type": "string"
+				},
+				"PasswordSalt": {
+					"type": "string"
+				},
+				"MiddleName": {
+					"type": "string"
+				},
+				"Suffix": {
+					"type": "string"
+				}
+			}
+		}
+	}
+}
