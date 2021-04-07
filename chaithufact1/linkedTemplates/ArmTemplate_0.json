@@ -7,6 +7,10 @@
 			"metadata": "Data Factory name",
 			"defaultValue": "chaithufact1"
 		},
+		"AzureBlobStorageAssmt6Dest_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorageAssmt6Dest'"
+		},
 		"AzureBlobStorageDest_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorageDest'"
@@ -42,14 +46,6 @@
 		"AzureSqlSampleDBLS_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'AzureSqlSampleDBLS'"
-		},
-		"Advworks2012SqlServer_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'Advworks2012SqlServer'"
-		},
-		"Advworks2012SqlServer_password": {
-			"type": "secureString",
-			"metadata": "Secure string for 'password' of 'Advworks2012SqlServer'"
 		},
 		"AzureDataLakeStore1_properties_typeProperties_dataLakeStoreUri": {
 			"type": "string",
@@ -90,16 +86,25 @@
 		"AzureDataLakeStoreGen1_properties_typeProperties_resourceGroupName": {
 			"type": "string",
 			"defaultValue": "ChaithanyaLTIRG"
-		},
-		"Advworks2012SqlServer_properties_typeProperties_userName": {
-			"type": "string",
-			"defaultValue": "DESKTOP-IGTQPFG\\Happy Users"
 		}
 	},
 	"variables": {
 		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
 	},
 	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureBlobStorageAssmt6Dest')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobStorage",
+				"typeProperties": {
+					"connectionString": "[parameters('AzureBlobStorageAssmt6Dest_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
 		{
 			"name": "[concat(parameters('factoryName'), '/AzureBlobStorageDest')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
@@ -252,6 +257,129 @@
 				"typeProperties": {}
 			},
 			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Assmt6Blobdest')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorageAssmt6Dest",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Json",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"container": "output"
+					}
+				},
+				"schema": {
+					"type": "object",
+					"properties": {
+						"SalesOrderID": {
+							"type": "integer"
+						},
+						"RevisionNumber": {
+							"type": "integer"
+						},
+						"OrderDate": {
+							"type": "string"
+						},
+						"DueDate": {
+							"type": "string"
+						},
+						"ShipDate": {
+							"type": "string"
+						},
+						"Status": {
+							"type": "integer"
+						},
+						"OnlineOrderFlag": {
+							"type": "boolean"
+						},
+						"SalesOrderNumber": {
+							"type": "string"
+						},
+						"PurchaseOrderNumber": {
+							"type": "string"
+						},
+						"AccountNumber": {
+							"type": "string"
+						},
+						"CustomerID": {
+							"type": "integer"
+						},
+						"ShipToAddressID": {
+							"type": "integer"
+						},
+						"BillToAddressID": {
+							"type": "integer"
+						},
+						"ShipMethod": {
+							"type": "string"
+						},
+						"SubTotal": {
+							"type": "number"
+						},
+						"TaxAmt": {
+							"type": "number"
+						},
+						"Freight": {
+							"type": "number"
+						},
+						"TotalDue": {
+							"type": "number"
+						},
+						"rowguid": {
+							"type": "string"
+						},
+						"ModifiedDate": {
+							"type": "string"
+						},
+						"NameStyle": {
+							"type": "boolean"
+						},
+						"Title": {
+							"type": "string"
+						},
+						"FirstName": {
+							"type": "string"
+						},
+						"LastName": {
+							"type": "string"
+						},
+						"CompanyName": {
+							"type": "string"
+						},
+						"SalesPerson": {
+							"type": "string"
+						},
+						"EmailAddress": {
+							"type": "string"
+						},
+						"Phone": {
+							"type": "string"
+						},
+						"PasswordHash": {
+							"type": "string"
+						},
+						"PasswordSalt": {
+							"type": "string"
+						},
+						"MiddleName": {
+							"type": "string"
+						},
+						"Suffix": {
+							"type": "string"
+						}
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorageAssmt6Dest')]"
+			]
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/AzureSqlDest1Assmt1')]",
@@ -419,6 +547,24 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/AzureSqlSourceAssmt6')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureSqlSampleDBLS",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureSqlSampleDBLS')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/AzureSqlTable1')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -497,74 +643,6 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorageDest')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/DelimitedText1')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureDataLakeStore1",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "DelimitedText",
-				"typeProperties": {
-					"location": {
-						"type": "AzureDataLakeStoreLocation",
-						"folderPath": "assmt2output"
-					},
-					"columnDelimiter": ",",
-					"escapeChar": "\\",
-					"quoteChar": "\""
-				},
-				"schema": []
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/AzureDataLakeStore1')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/SQLSampleDataSource')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureSqlDatabaseSource",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [],
-				"typeProperties": {}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/AzureSqlDatabaseSource')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Advworks2012SqlServer')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "SqlServer",
-				"typeProperties": {
-					"connectionString": "[parameters('Advworks2012SqlServer_connectionString')]",
-					"userName": "[parameters('Advworks2012SqlServer_properties_typeProperties_userName')]",
-					"password": {
-						"type": "SecureString",
-						"value": "[parameters('Advworks2012SqlServer_password')]"
-					}
-				},
-				"connectVia": {
-					"referenceName": "SelfHostedintegrationRuntime",
-					"type": "IntegrationRuntimeReference"
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/integrationRuntimes/SelfHostedintegrationRuntime')]"
 			]
 		}
 	]

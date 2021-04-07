@@ -7,6 +7,14 @@
 			"metadata": "Data Factory name",
 			"defaultValue": "chaithufact1"
 		},
+		"Advworks2012SqlServer_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'Advworks2012SqlServer'"
+		},
+		"Advworks2012SqlServer_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'Advworks2012SqlServer'"
+		},
 		"SqlServerAdventureWorks_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'SqlServerAdventureWorks'"
@@ -31,6 +39,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'newSqlServer'"
 		},
+		"Advworks2012SqlServer_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "DESKTOP-IGTQPFG\\Happy Users"
+		},
 		"SqlServerAdventureWorks_properties_typeProperties_userName": {
 			"type": "string",
 			"defaultValue": "DESKTOP-IGTQPFG\\Happy Users"
@@ -48,6 +60,68 @@
 		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
 	},
 	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/DelimitedText1')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureDataLakeStore1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureDataLakeStoreLocation",
+						"folderPath": "assmt2output"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"quoteChar": "\""
+				},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SQLSampleDataSource')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureSqlDatabaseSource",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Advworks2012SqlServer')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "SqlServer",
+				"typeProperties": {
+					"connectionString": "[parameters('Advworks2012SqlServer_connectionString')]",
+					"userName": "[parameters('Advworks2012SqlServer_properties_typeProperties_userName')]",
+					"password": {
+						"type": "SecureString",
+						"value": "[parameters('Advworks2012SqlServer_password')]"
+					}
+				},
+				"connectVia": {
+					"referenceName": "SelfHostedintegrationRuntime",
+					"type": "IntegrationRuntimeReference"
+				}
+			},
+			"dependsOn": []
+		},
 		{
 			"name": "[concat(parameters('factoryName'), '/SqlServerAdventureWorks')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
@@ -115,6 +189,62 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/Assmt6pipeline')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Copy data1",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "AzureSqlSource",
+								"sqlReaderQuery": "Select C.FirstName+' '+C.LastName+' brought '+P.Name+' from '+C.SalesPerson+' worth '+CONVERT(VARCHAR(12), P.ListPrice) \n\t\tfrom [SalesLT].[Customer] as C\n\t\tInner Join [SalesLT].[SalesOrderHeader] as S on C.CustomerID=S.CustomerID\n\t\tInner Join [SalesLT].[SalesOrderDetail] as D on S.SalesOrderID=D.SalesOrderID\n\t\tInner Join [SalesLT].[Product] as P on D.ProductID=P.ProductID",
+								"queryTimeout": "02:00:00",
+								"partitionOption": "None"
+							},
+							"sink": {
+								"type": "JsonSink",
+								"storeSettings": {
+									"type": "AzureBlobStorageWriteSettings"
+								},
+								"formatSettings": {
+									"type": "JsonWriteSettings"
+								}
+							},
+							"enableStaging": false
+						},
+						"inputs": [
+							{
+								"referenceName": "AzureSqlSourceAssmt6",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "Assmt6Blobdest",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					}
+				],
+				"annotations": []
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/AdventureWorks2012')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -131,7 +261,9 @@
 					"table": "Address"
 				}
 			},
-			"dependsOn": []
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/Advworks2012SqlServer')]"
+			]
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/AdventureWorksDW2012Source')]",
@@ -242,7 +374,9 @@
 					"table": "Department"
 				}
 			},
-			"dependsOn": []
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/Advworks2012SqlServer')]"
+			]
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/Assmt2Sqlserversource')]",
@@ -498,7 +632,8 @@
 				"annotations": []
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/Assmt2Sqlserversource')]"
+				"[concat(variables('factoryId'), '/datasets/Assmt2Sqlserversource')]",
+				"[concat(variables('factoryId'), '/datasets/DelimitedText1')]"
 			]
 		},
 		{

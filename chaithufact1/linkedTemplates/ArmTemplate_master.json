@@ -15,6 +15,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'Advworks2012SqlServer'"
 		},
+		"AzureBlobStorageAssmt6Dest_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorageAssmt6Dest'"
+		},
 		"AzureBlobStorageDest_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorageDest'"
@@ -158,6 +162,9 @@
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
 					},
+					"AzureBlobStorageAssmt6Dest_connectionString": {
+						"value": "[parameters('AzureBlobStorageAssmt6Dest_connectionString')]"
+					},
 					"AzureBlobStorageDest_connectionString": {
 						"value": "[parameters('AzureBlobStorageDest_connectionString')]"
 					},
@@ -184,12 +191,6 @@
 					},
 					"AzureSqlSampleDBLS_connectionString": {
 						"value": "[parameters('AzureSqlSampleDBLS_connectionString')]"
-					},
-					"Advworks2012SqlServer_connectionString": {
-						"value": "[parameters('Advworks2012SqlServer_connectionString')]"
-					},
-					"Advworks2012SqlServer_password": {
-						"value": "[parameters('Advworks2012SqlServer_password')]"
 					},
 					"AzureDataLakeStore1_properties_typeProperties_dataLakeStoreUri": {
 						"value": "[parameters('AzureDataLakeStore1_properties_typeProperties_dataLakeStoreUri')]"
@@ -220,9 +221,6 @@
 					},
 					"AzureDataLakeStoreGen1_properties_typeProperties_resourceGroupName": {
 						"value": "[parameters('AzureDataLakeStoreGen1_properties_typeProperties_resourceGroupName')]"
-					},
-					"Advworks2012SqlServer_properties_typeProperties_userName": {
-						"value": "[parameters('Advworks2012SqlServer_properties_typeProperties_userName')]"
 					}
 				}
 			},
@@ -242,6 +240,12 @@
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
 					},
+					"Advworks2012SqlServer_connectionString": {
+						"value": "[parameters('Advworks2012SqlServer_connectionString')]"
+					},
+					"Advworks2012SqlServer_password": {
+						"value": "[parameters('Advworks2012SqlServer_password')]"
+					},
 					"SqlServerAdventureWorks_connectionString": {
 						"value": "[parameters('SqlServerAdventureWorks_connectionString')]"
 					},
@@ -259,6 +263,9 @@
 					},
 					"newSqlServer_password": {
 						"value": "[parameters('newSqlServer_password')]"
+					},
+					"Advworks2012SqlServer_properties_typeProperties_userName": {
+						"value": "[parameters('Advworks2012SqlServer_properties_typeProperties_userName')]"
 					},
 					"SqlServerAdventureWorks_properties_typeProperties_userName": {
 						"value": "[parameters('SqlServerAdventureWorks_properties_typeProperties_userName')]"

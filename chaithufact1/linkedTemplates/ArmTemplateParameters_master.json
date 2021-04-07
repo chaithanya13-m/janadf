@@ -11,6 +11,9 @@
 		"Advworks2012SqlServer_password": {
 			"value": ""
 		},
+		"AzureBlobStorageAssmt6Dest_connectionString": {
+			"value": ""
+		},
 		"AzureBlobStorageDest_connectionString": {
 			"value": ""
 		},
