@@ -5,13 +5,28 @@
 		"factoryName": {
 			"value": "chaithufact1"
 		},
+		"Advworks2012SqlServer_connectionString": {
+			"value": ""
+		},
+		"Advworks2012SqlServer_password": {
+			"value": ""
+		},
 		"AzureBlobStorageDest_connectionString": {
+			"value": ""
+		},
+		"AzureDataLakeStore1_servicePrincipalKey": {
+			"value": ""
+		},
+		"AzureDataLakeStoreGen1_servicePrincipalKey": {
 			"value": ""
 		},
 		"AzureSqlDatabase1_connectionString": {
 			"value": ""
 		},
 		"AzureSqlDatabaseLS_connectionString": {
+			"value": ""
+		},
+		"AzureSqlDatabaseSampleDB_connectionString": {
 			"value": ""
 		},
 		"AzureSqlDatabaseSource_connectionString": {
@@ -35,10 +50,52 @@
 		"SqlServerLS_password": {
 			"value": ""
 		},
+		"newSqlServer_connectionString": {
+			"value": ""
+		},
+		"newSqlServer_password": {
+			"value": ""
+		},
+		"Advworks2012SqlServer_properties_typeProperties_userName": {
+			"value": "DESKTOP-IGTQPFG\\Happy Users"
+		},
+		"AzureDataLakeStore1_properties_typeProperties_dataLakeStoreUri": {
+			"value": "https://chaithugen1.azuredatalakestore.net/webhdfs/v1"
+		},
+		"AzureDataLakeStore1_properties_typeProperties_servicePrincipalId": {
+			"value": "f9acea1b-87be-4c16-80df-22257e70224a"
+		},
+		"AzureDataLakeStore1_properties_typeProperties_tenant": {
+			"value": "921669b7-76fb-4058-b5e2-cc266af1922d"
+		},
+		"AzureDataLakeStore1_properties_typeProperties_subscriptionId": {
+			"value": "1d358df2-f6b6-41c9-91b8-ee4655073e1c"
+		},
+		"AzureDataLakeStore1_properties_typeProperties_resourceGroupName": {
+			"value": "ChaithanyaLTIRG"
+		},
+		"AzureDataLakeStoreGen1_properties_typeProperties_dataLakeStoreUri": {
+			"value": "https://chaithugen1.azuredatalakestore.net/webhdfs/v1"
+		},
+		"AzureDataLakeStoreGen1_properties_typeProperties_servicePrincipalId": {
+			"value": "f9acea1b-87be-4c16-80df-22257e70224a"
+		},
+		"AzureDataLakeStoreGen1_properties_typeProperties_tenant": {
+			"value": "921669b7-76fb-4058-b5e2-cc266af1922d"
+		},
+		"AzureDataLakeStoreGen1_properties_typeProperties_subscriptionId": {
+			"value": "1d358df2-f6b6-41c9-91b8-ee4655073e1c"
+		},
+		"AzureDataLakeStoreGen1_properties_typeProperties_resourceGroupName": {
+			"value": "ChaithanyaLTIRG"
+		},
 		"SqlServerAdventureWorks_properties_typeProperties_userName": {
 			"value": "DESKTOP-IGTQPFG\\Happy Users"
 		},
 		"SqlServerLS_properties_typeProperties_userName": {
+			"value": "DESKTOP-IGTQPFG\\Happy Users"
+		},
+		"newSqlServer_properties_typeProperties_userName": {
 			"value": "DESKTOP-IGTQPFG\\Happy Users"
 		},
 		"containerUri": {
