@@ -42,7 +42,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "SampleDBLS",
+						"referenceName": "AzureSqlDest1Assmt1",
 						"type": "DatasetReference"
 					}
 				]

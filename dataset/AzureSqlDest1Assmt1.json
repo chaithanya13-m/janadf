@@ -1,0 +1,12 @@
+{
+	"name": "AzureSqlDest1Assmt1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabaseSampleDB",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": []
+	}
+}
